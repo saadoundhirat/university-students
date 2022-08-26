@@ -1,0 +1,19 @@
+{
+  "name": "university-students",
+  "version": "1.0.0",
+  "description": "building university students crm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saadoundhirat/university-students.git"
+  },
+  "author": "sa'doun dhirat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saadoundhirat/university-students/issues"
+  },
+  "homepage": "https://github.com/saadoundhirat/university-students#readme"
+}
