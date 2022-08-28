@@ -4,7 +4,7 @@
 ### Student Table:
 * ID:primary key
 * First Name:string
-* Last Name:strin g
+* Last Name:string
 * DOB: date
 * MAJOR : string
 
