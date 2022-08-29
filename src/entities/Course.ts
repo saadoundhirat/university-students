@@ -8,35 +8,40 @@ import {
   ManyToMany,
   JoinTable,
   JoinColumn,
+  ManyToOne,
 } from "typeorm";
+import { Instructor } from "./Instructor";
 import { Student } from "./Student";
 
 @Entity("course")
 export class Course extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column({ type: "varchar", length: 50, nullable: true })
   name: string;
 
-  @Column({ type: "varchar", length: 50, nullable: true })
-  instructorId: string;
-
-  @ManyToMany(
-    () => Student
-  )
+  @ManyToMany(() => Student, (student) => student.courses, {
+    cascade: true,
+  })
   @JoinTable({
-    name: "transactional", 
+    name: "transactional",
     joinColumn: {
-      name: "course",
+      name: "courseId",
       referencedColumnName: "id",
     },
     inverseJoinColumn: {
-      name :"student",
+      name: "studentId",
       referencedColumnName: "id",
-    }
+    },
   })
-  students: Student[]
+  public students: Student[];
+
+  @ManyToOne(() => Instructor, (instructor) => instructor.courses, { eager: true })
+  @JoinColumn({
+    name: "instructorId",
+  })
+  instructor: Instructor;
 
   @CreateDateColumn({ type: "date" })
   createdAt: Date;

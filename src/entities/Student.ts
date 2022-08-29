@@ -11,8 +11,8 @@ import { Course } from "./Course";
 
 @Entity("student")
 export class Student extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column({ type: "varchar", length: 50, nullable: true })
   firstName: string;
@@ -26,11 +26,8 @@ export class Student extends BaseEntity {
   @Column({ type: "date", nullable: true })
   dob: Date;
 
-  @ManyToMany(
-    () => Course
-  )
-  courses: Course[]
-
+  @ManyToMany(() => Course, (course) => course.students)
+  courses: Course[];
 
   @CreateDateColumn({ type: "date" })
   createdAt: Date;
